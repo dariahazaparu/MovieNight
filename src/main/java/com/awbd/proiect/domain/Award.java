@@ -13,7 +13,7 @@ public class Award {
     private String Name;
     private int Year;
 
-    @OneToOne
+    @OneToOne(mappedBy = "award", cascade = CascadeType.ALL, orphanRemoval = true)
     private Actor actor;
 
 }

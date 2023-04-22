@@ -18,7 +18,7 @@ public class Actor {
     @OneToOne
     private Award award;
 
-    @ManyToMany(mappedBy = "actors")
+    @ManyToMany(mappedBy = "actors",cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     private List<Movie> movies;
 
     @ManyToOne

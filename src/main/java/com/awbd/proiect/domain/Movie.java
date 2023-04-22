@@ -17,10 +17,10 @@ public class Movie {
     @ManyToOne
     private Genre genre;
 
-    @OneToMany(mappedBy = "movie")
+    @OneToMany(mappedBy = "movie", cascade = CascadeType.ALL)
     private List<Review> reviews;
 
-    @ManyToMany
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinTable(name="actor_movie",
             joinColumns = @JoinColumn(name="movie_id", referencedColumnName = "Id"),
             inverseJoinColumns = @JoinColumn(name="actor_id", referencedColumnName = "Id"))
