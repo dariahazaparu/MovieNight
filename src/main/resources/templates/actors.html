@@ -13,21 +13,22 @@
 </head>
 <body>
 
-<tr th:each="movie, stat : ${movies}" th:class="${stat.odd}? 'table-light':'table-dark'">
-    <td th:text="${movie.Id}">1</td>
-    <td th:text="${movie.Name}">movie 1</td>
+<tr th:each="actor, stat : ${actors}" th:class="${stat.odd}? 'table-light':'table-dark'">
+    <td th:text="${actor.Id}">1</td>
+    <td th:text="${actor.FirstName}">movie 1</td>
+    <td th:text="${actor.LastName}">movie 1</td>
     <td>
-        <a href="#" th:href="@{'/movies/' + ${movie.Id}}">
+        <a href="#" th:href="@{'/actors/' + ${actor.Id}}">
             <i class="fa-solid fa-circle-info"></i>
         </a>
     </td>
     <td>
-        <a href="#" th:href="@{'/movies/edit/' + ${movie.Id}}">
+        <a href="#" th:href="@{'/actors/edit/' + ${actor.Id}}">
             <i class="fa-solid fa-pen"></i>
         </a>
     </td>
     <td>
-        <a href="#" th:href="@{'/movies/delete/' + ${movie.Id}}">
+        <a href="#" th:href="@{'/actors/delete/' + ${actor.Id}}">
             <i class="fa-solid fa-trash"></i>
         </a>
     </td>

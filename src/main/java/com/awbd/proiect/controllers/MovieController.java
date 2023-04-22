@@ -9,9 +9,8 @@ import com.awbd.proiect.services.MovieService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
@@ -58,5 +57,32 @@ public class MovieController {
         List<Genre> genresAll = genreService.findAll();
         model.addAttribute("genresAll", genresAll);
         return "movieForm";
+    }
+
+    @PostMapping("")
+    public String saveOrUpdate(@ModelAttribute Movie movie){
+        Movie savedMovie;
+        savedMovie = movieService.save(movie);
+        return "redirect:/movies" ;
+    }
+
+
+    @RequestMapping("/edit/{id}")
+    public String edit(@PathVariable String id, Model model) {
+        model.addAttribute("movie",
+                movieService.findById(Long.parseLong(id)));
+
+        List<Actor> actorsAll = actorService.findAll();
+        model.addAttribute("actorsAll", actorsAll );
+        List<Genre> genresAll = genreService.findAll();
+        model.addAttribute("genresAll", genresAll);
+
+        return "movieForm";
+    }
+
+    @RequestMapping("/delete/{id}")
+    public String deleteById(@PathVariable String id){
+        movieService.deleteById(Long.valueOf(id));
+        return "redirect:/movies";
     }
 }

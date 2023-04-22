@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ActorServiceImpl implements ActorService{
@@ -22,5 +23,24 @@ public class ActorServiceImpl implements ActorService{
         List<Actor> actors = new LinkedList<>();
         actors = actorRepository.findAll();
         return actors;
+    }
+
+    @Override
+    public Actor findById(long id) {
+        Optional<Actor> actor = actorRepository.findById(id);
+        if (actor.isEmpty()) {
+            throw new RuntimeException("Actor not found");
+        }
+        return actor.get();
+    }
+
+    @Override
+    public Actor save(Actor actor) {
+        return actorRepository.save(actor);
+    }
+
+    @Override
+    public void deleteById(long id) {
+        actorRepository.deleteById(id);
     }
 }
