@@ -1,0 +1,1 @@
+insert into Genre values (1, 'Action')
