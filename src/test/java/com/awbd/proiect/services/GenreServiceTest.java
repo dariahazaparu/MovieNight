@@ -45,5 +45,4 @@ public class GenreServiceTest {
         verify(genreRepository, times(1)).findAll();
     }
 
-
 }
