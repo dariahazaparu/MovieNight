@@ -73,17 +73,11 @@
                         <div class="form-row">
                             <div class="col-md-6">
                                 <label th:for="genres">Country</label>
-                                <ul id="genre" style="list-style: none;">
-                                    <li th:each="country: ${countriesAll}">
-                                        <input th:field="*{country}"
-                                               th:value="${country.getId()}"
-                                               type="radio"/>
-                                        <label
-                                                th:for="${#ids.prev('country')}"
-                                                th:text="${country.getName()}">
-                                        </label>
-                                    </li>
-                                </ul>
+                                    <select th:field="*{country}">
+                                        <th:block th:each="c:${countriesAll}">
+                                            <option th:text="${c.name}" th:value="${c.id}"></option>
+                                        </th:block>
+                                    </select>
                             </div>
                         </div>
 

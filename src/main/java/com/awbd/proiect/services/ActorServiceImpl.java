@@ -1,6 +1,7 @@
 package com.awbd.proiect.services;
 
 import com.awbd.proiect.domain.Actor;
+import com.awbd.proiect.exceptions.ResourceNotFoundException;
 import com.awbd.proiect.repositories.ActorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -29,7 +30,7 @@ public class ActorServiceImpl implements ActorService{
     public Actor findById(long id) {
         Optional<Actor> actor = actorRepository.findById(id);
         if (actor.isEmpty()) {
-            throw new RuntimeException("Actor not found");
+            throw new ResourceNotFoundException("Actor not found");
         }
         return actor.get();
     }
