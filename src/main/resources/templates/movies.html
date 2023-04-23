@@ -38,7 +38,7 @@
 
 <div class="container " style="margin-top: 50px">
     <div class="row align-self-center">
-        <div class="col-md-6 col-md-offset-3">
+        <div class="col-md-8 col-md-offset-3">
             <div class="pannel-group">
                 <div class="panel panel-primary">
                     <div class="panel-heading" >
@@ -46,19 +46,23 @@
                     </div>
                     <div class="panel-body">
                         <div class="row" th:each="movie:${movies}">
-                            <div class="co-md-4">
+                            <div class="col-md-4">
                                 <p th:text="${movie.name}"></p>
                             </div>
-                            <div class="co-md-2">
+                            <div class="col-md-4">
+                                <p th:text="${movie.genre.name}"></p>
+                            </div>
+                            <div class="col-md-2">
                                 <a href="#" th:href="@{'/movies/' + ${movie.Id}}">View</a>
                             </div>
-                            <div class="co-md-2">
+                            <div class="col-md-2">
                                 <a href="#" th:href="@{'/movies/delete/' + ${movie.Id}}">Delete</a>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+            <a th:href="@{'/movies/form'}">Add movie</a>
         </div>
     </div>
 </div>

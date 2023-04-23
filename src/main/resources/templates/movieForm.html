@@ -42,60 +42,61 @@
     <div class="container" style="margin-top: 50px">
         <div class="panel panel-default">
             <div  class="panel-heading">
-                <h3> </h3>
+                <h3>Add movie</h3>
             </div>
-
+            <hr />
             <div class="panel-body">
-                <div class="form-group row">
-                    <div class="col-md-2 ">
-                        <label th:for="actors">Actors</label>
+                <div class="row">
+                        <label>Movie name</label>
+                        <input class="form-control" th:field="*{Name}" type="text" placeholder="movie name"/>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-md-2">
+                        <label th:for="actors">Actors:</label>
+                    </div>
+                    <div class="col-md-6">
                         <ul id="actors" style="list-style: none;">
-                            <li th:each="actor: ${actorsAll}">
-                                <input th:field="*{actors}"
-                                       th:value="${actor.getId()}"
-                                       type="checkbox"/>
+                                <li th:each="actor: ${actorsAll}">
+                                    <input th:field="*{actors}"
+                                           th:value="${actor.getId()}"
+                                           type="checkbox"/>
+                                    <label
+                                            th:for="${#ids.prev('actors')}"
+                                            th:text="${actor.getFirstName()} + ' ' + ${actor.getLastName()} + ' (' + ${actor.country.name} + ')'">
+                                    </label>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                <div class="row">
+                    <div class="col-md-2 ">
+                        <label th:for="genres">Genre</label>
+                    </div>
+                    <div class="col-md-6">
+                        <ul id="genre" style="list-style: none;">
+                            <li th:each="genre: ${genresAll}">
+                                <input th:field="*{genre}"
+                                       th:value="${genre.getId()}"
+                                       type="radio"/>
                                 <label
-                                        th:for="${#ids.prev('actors')}"
-                                        th:text="${actor.getFirstName()}">
+                                        th:for="${#ids.prev('genre')}"
+                                        th:text="${genre.getName()}">
                                 </label>
                             </li>
                         </ul>
                     </div>
-                    <div class="col-md-5 ">
-                        <div class="form-row">
-                            <input class="form-control" th:field="*{Name}" type="text" placeholder="movie name"/>
-                        </div>
-                        <br>
-                        <br>
-                        <br>
-                        <br>
-                        <div class="form-row">
-                            <div class="col-md-6">
-                                <label th:for="genres">Genre</label>
-                                <ul id="genre" style="list-style: none;">
-                                    <li th:each="genre: ${genresAll}">
-                                        <input th:field="*{genre}"
-                                               th:value="${genre.getId()}"
-                                               type="radio"/>
-                                        <label
-                                                th:for="${#ids.prev('genre')}"
-                                                th:text="${genre.getName()}">
-                                        </label>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-
-                    </div>
-
-                </div>
-                <div class="row">
-                    <div class="col-md-1 ml-md-auto">
-                        <button class="btn btn-primary" type="submit">Submit</button>
-                    </div>
                 </div>
             </div>
         </div>
+        <br>
+        <div class="row">
+            <div class="col-md-1 ml-md-auto">
+                <button class="btn btn-primary" type="submit">Submit</button>
+            </div>
+        </div>
+    </div>
+    </div>
     </div>
 </form>
 </body>

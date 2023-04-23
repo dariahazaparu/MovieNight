@@ -43,7 +43,12 @@
             <div class="pannel-group">
                 <div class="panel panel-primary">
                     <div class="panel-heading" >
-                        <h1 class="panel-title" th:text="${actor.getFirstName} + ' ' + ${actor.getLastName}">Movie</h1>
+                        <h1 class="panel-title" th:text="${actor.getFirstName} + ' ' + ${actor.getLastName}">actor</h1>
+                        <h3 th:text="${actor.award != null ? (actor.award.name) : ''} + ' ' + ${actor.award != null ? (actor.award.year): ''}">award</h3>
+                        <a href="#" th:href="@{'/actors/award/' + ${actor.Id}}">
+                            <h3 th:text="${actor.award == null ? 'Add award' : '' }"></h3>
+                        </a>
+
                     </div>
                     <div class="panel-body">
                         <div class="row">
@@ -73,9 +78,7 @@
                         </div>
                     </div>
                 </div>
-
             </div>
-
         </div>
     </div>
 </div>
