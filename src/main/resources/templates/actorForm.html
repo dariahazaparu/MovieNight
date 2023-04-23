@@ -60,12 +60,22 @@
                         <br />
                         <div class="form-row">
                             <div class="col-md-6">
-                                <label th:for="genres">Country</label>
-                                    <select th:field="*{country}">
-                                        <th:block th:each="c:${countriesAll}">
-                                            <option th:text="${c.name}" th:value="${c.id}"></option>
-                                        </th:block>
-                                    </select>
+                                <label th:for="countries">Country</label>
+                                <select th:field="*{country}">
+                                    <th:block th:each="c:${countriesAll}">
+                                        <option th:text="${c.name}" th:value="${c.id}"></option>
+                                    </th:block>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="col-md-6">
+                                <label th:for="award">Award</label>
+                                <select th:field="*{award}">
+                                    <th:block th:each="c:${awardsAvailable}">
+                                        <option th:text="${c.name + ' ' + c.year}" th:value="${c.id}"></option>
+                                    </th:block>
+                                </select>
                             </div>
                         </div>
 

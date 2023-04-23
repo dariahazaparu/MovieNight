@@ -1,9 +1,11 @@
 package com.awbd.proiect.controllers;
 
 import com.awbd.proiect.domain.Actor;
+import com.awbd.proiect.domain.Award;
 import com.awbd.proiect.domain.Country;
 import com.awbd.proiect.exceptions.ResourceNotFoundException;
 import com.awbd.proiect.services.ActorService;
+import com.awbd.proiect.services.AwardService;
 import com.awbd.proiect.services.CountryService;
 import com.awbd.proiect.services.MovieService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +25,9 @@ public class ActorController {
 
     @Autowired
     MovieService movieService;
+
+    @Autowired
+    AwardService awardService;
 
     @Autowired
     CountryService countryService;
@@ -52,6 +57,8 @@ public class ActorController {
         model.addAttribute("actor", new Actor());
         List<Country> countriesAll = countryService.findAll();
         model.addAttribute("countriesAll", countriesAll);
+        List<Award> awardsAvailable = awardService.findAll();
+        model.addAttribute("awardsAvailable", awardsAvailable);
         return "actorForm";
     }
 

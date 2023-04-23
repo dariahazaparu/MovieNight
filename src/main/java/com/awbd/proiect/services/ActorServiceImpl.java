@@ -1,6 +1,7 @@
 package com.awbd.proiect.services;
 
 import com.awbd.proiect.domain.Actor;
+import com.awbd.proiect.domain.Award;
 import com.awbd.proiect.exceptions.ResourceNotFoundException;
 import com.awbd.proiect.repositories.ActorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +25,11 @@ public class ActorServiceImpl implements ActorService{
         List<Actor> actors = new LinkedList<>();
         actors = actorRepository.findAll();
         return actors;
+    }
+
+    @Override
+    public Award getAwardById(long id) {
+        return actorRepository.findById(id).get().getAward();
     }
 
     @Override
