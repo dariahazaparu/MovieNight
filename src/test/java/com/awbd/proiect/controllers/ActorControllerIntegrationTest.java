@@ -65,12 +65,11 @@ public class ActorControllerIntegrationTest {
         productTest.setId(id);
         productTest.setFirstName("test");
 
-        Country genre = new Country();
-        genre.setId(1);
-        genre.setName("genre");
-        productTest.setCountry(genre);
+        Country country = new Country();
+        country.setId(1);
+        country.setName("country");
+        productTest.setCountry(country);
 
-        log.info("add Actor...");
         when(ActorService.findById(id)).thenReturn(productTest);
 
         mockMvc.perform(get("/actors/{id}", "1"))

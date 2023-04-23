@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -55,9 +56,11 @@ public class ReviewController {
     }
 
     @PostMapping("")
-    public String saveOrUpdate(@ModelAttribute Review review) {
+    public String saveOrUpdate(@ModelAttribute Review review, BindingResult bindingResult) {
         Review savedReview;
         savedReview = reviewService.save(review);
+        if(bindingResult.hasErrors())
+            return "reviewForm";
         return "redirect:/reviews/"+review.getMovie().getId();
     }
 
@@ -65,7 +68,7 @@ public class ReviewController {
     public String deleteById (@PathVariable String id) {
         long movieId = reviewService.findById(Long.parseLong(id)).getMovie().getId();
         reviewService.deleteById(Long.parseLong(id));
-        return "redirect:/movies/"+movieId;
+        return "redirect:/reviews/"+movieId;
     }
 
     @ResponseStatus(HttpStatus.NOT_FOUND)

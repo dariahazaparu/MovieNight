@@ -43,34 +43,23 @@
             <div class="pannel-group">
                 <div class="panel panel-primary">
                     <div class="panel-heading" >
-                        <h1 class="panel-title" th:text="${movie.name}">Movie</h1>
+                        <h1 class="panel-title" th:text="${movie.name}+ ' reviews'">Movie</h1>
                     </div>
                     <div class="panel-body">
-                        <div class="row">
-                            <div class="col-md-2">
-                                <p5>Reviews:</p5>
-                            </div>
+                        <div class="row" th:each="review:${reviews}">
                             <div class="col-md-6">
-                                <ul>
-                                    <li th:each="review:${reviews}" th:text="${review.getMessage()}">
+                                <label th:text="${review.getMessage()}">
                                         review
-                                    </li>
-                                </ul>
+                                </label>
                             </div>
                             <div class="col-md-4">
-                                <ul>
-                                    <li th:each="review:${reviews}" th:text="${review.getRating().getDescription()}">
+                                <label th:text="${review.getRating().getDescription()}">
                                         rating
-                                    </li>
-                                </ul>
+                                </label>
                             </div>
-<!--                            <div class="col-md-2">-->
-<!--                                <ul>-->
-<!--                                    <li th:each="review:${reviews}">-->
-<!--                                        <a th:href="@{'/reviews/delete/' + ${review.id}}">Delete</a>-->
-<!--                                    </li>-->
-<!--                                </ul>-->
-<!--                            </div>-->
+                            <div class="col-md-2">
+                                <a th:href="@{'/reviews/delete/' + ${review.id}}">Delete</a>
+                            </div>
                         </div>
                     </div>
                     <a th:href="@{'/reviews/form/'+${movie.id}}">Add review</a>

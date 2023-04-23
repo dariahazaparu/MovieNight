@@ -59,7 +59,7 @@ public class ActorController {
     public String saveOrUpdate(@ModelAttribute Actor actor) {
         Actor savedActor;
         savedActor = actorService.save(actor);
-        return "redirect:/actors";
+        return "redirect:/actors/"+actor.getId();
     }
 
     @RequestMapping("/edit/{id}")

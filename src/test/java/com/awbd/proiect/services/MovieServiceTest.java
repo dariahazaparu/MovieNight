@@ -2,6 +2,7 @@ package com.awbd.proiect.services;
 
 import com.awbd.proiect.domain.Movie;
 import com.awbd.proiect.repositories.MovieRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.runner.RunWith;
@@ -17,6 +18,7 @@ import static org.mockito.Mockito.*;
 
 @RunWith(MockitoJUnitRunner.class)
 @ExtendWith(MockitoExtension.class)
+@Slf4j
 public class MovieServiceTest {
     @Mock
     MovieRepository movieRepository;
@@ -33,8 +35,13 @@ public class MovieServiceTest {
         movie.setName("Film");
         moviesRet.add(movie);
 
+        log.info("findMovies");
+
         when(movieRepository.findAll()).thenReturn(moviesRet);
         List<Movie> movies = movieService.findAll();
+
+        log.info(String.valueOf(movie.getId()));
+
         assertEquals(movies.size(), 1);
         verify(movieRepository, times(1)).findAll();
 
@@ -56,6 +63,7 @@ public class MovieServiceTest {
     public void findById_fail() {
         when(movieRepository.findById(1L)).thenThrow(RuntimeException.class);
         assertThrows(RuntimeException.class, ()->{movieService.findById(1L);});
+        log.info("findById exception");
         verify(movieRepository, times(1)).findById(1L);
     }
 }

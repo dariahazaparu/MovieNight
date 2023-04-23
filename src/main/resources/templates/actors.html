@@ -31,32 +31,36 @@
                     </li>
                 </ul>
             </div>
-
-
         </nav>
     </div>
 </head>
 <body>
 
-<tr th:each="actor, stat : ${actors}" th:class="${stat.odd}? 'table-light':'table-dark'">
-    <td th:text="${actor.Id}">1</td>
-    <td th:text="${actor.FirstName}">movie 1</td>
-    <td th:text="${actor.LastName}">movie 1</td>
-    <td>
-        <a href="#" th:href="@{'/actors/' + ${actor.Id}}">
-            <i class="fa-solid fa-circle-info"></i>
-        </a>
-    </td>
-    <td>
-        <a href="#" th:href="@{'/actors/edit/' + ${actor.Id}}">
-            <i class="fa-solid fa-pen"></i>
-        </a>
-    </td>
-    <td>
-        <a href="#" th:href="@{'/actors/delete/' + ${actor.Id}}">
-            <i class="fa-solid fa-trash"></i>
-        </a>
-    </td>
-</tr>
+<div class="container " style="margin-top: 50px">
+    <div class="row align-self-center">
+        <div class="col-md-6 col-md-offset-3">
+            <div class="pannel-group">
+                <div class="panel panel-primary">
+                    <div class="panel-heading" >
+                        <h1 class="panel-title">Actors</h1>
+                    </div>
+                    <div class="panel-body">
+                        <div class="row" th:each="actor: ${actors}">
+                            <div class="col-md-4">
+                                <p th:text="${actor.FirstName} + ' ' + ${actor.LastName}"></p>
+                            </div>
+                            <div class="col-md-2">
+                                <p th:text="${actor.country.name}"></p>
+                            </div>
+                            <div class="col-md-2">
+                                <a href="#" th:href="@{'/actors/' + ${actor.Id}}">View</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 </body>
 </html>

@@ -48,7 +48,7 @@
                     <div class="panel-body">
                         <div class="row">
                             <div class="col-md-3">
-                                <p5>Genre:</p5>
+                                <p5>Country:</p5>
                             </div>
                             <div class="col-md-3">
                                 <p th:text="${actor.Country.getName()}">
@@ -66,6 +66,10 @@
                                     </li>
                                 </ul>
                             </div>
+                        </div>
+
+                        <div class="col-md-2">
+                            <a href="#" th:href="@{'/actors/edit/' + ${actor.Id}}">Edit</a>
                         </div>
                     </div>
                 </div>
