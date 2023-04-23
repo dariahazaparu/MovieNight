@@ -65,7 +65,7 @@ public class ReviewController {
     public String deleteById (@PathVariable String id) {
         long movieId = reviewService.findById(Long.parseLong(id)).getMovie().getId();
         reviewService.deleteById(Long.parseLong(id));
-        return "redirect:/movieDetails/"+movieId;
+        return "redirect:/movies/"+movieId;
     }
 
     @ResponseStatus(HttpStatus.NOT_FOUND)

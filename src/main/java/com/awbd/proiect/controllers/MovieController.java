@@ -16,6 +16,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 @RequestMapping("/movies")
@@ -35,9 +36,12 @@ public class MovieController {
     }
 
     @RequestMapping("")
-    public ModelAndView Movies() {
+    public ModelAndView Movies(@RequestParam("genre") Optional<Integer> genre) {
         ModelAndView modelAndView = new ModelAndView("movies");
         List<Movie> movies = movieService.findAll();
+        if(genre.isPresent()) {
+            movies.removeIf(m -> m.getGenre().getId() != genre.get());
+        }
         modelAndView.addObject("movies", movies);
         return modelAndView;
     }
