@@ -11,7 +11,9 @@
 
     <div class="container">
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
-             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <a class="nav-link" th:href="@{'/auction'}"> <i class="fas fa-home mx-1"></i>  </a>
+            <a class="nav-link" th:href="@{'/auction'}"> <i class="fas fa-user mx-1"></i>  </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
 
@@ -19,25 +21,13 @@
                 <ul class="navbar-nav ml-auto topnav">
 
                     <li class="nav-item" active>
-                        <a class="nav-link" th:href="@{'/products'}">Products</a>
+                        <a class="nav-link" th:href="@{'/movies'}">Movies</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Categories</a>
+                        <a class="nav-link" th:href="@{'/actors'}">Actors</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">About</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Contact</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link btn btn-primary text-white" type="button" th:href="@{'/products/form'}" >&emsp;Sell&emsp;</a>
-                    </li>&nbsp;
-                    <li class="nav-item">
-                        <a class="nav-link btn btn-primary text-white" type="button" href="#" >Sign In</a>
-                    </li>&nbsp;
-                    <li class="nav-item">
-                        <a class="nav-link btn btn-primary text-white" type="button" th:href="@{'/participant/form'}" >Register</a>
+                        <a class="nav-link" th:href="@{'/genres'}">Genres</a>
                     </li>
                 </ul>
             </div>
@@ -57,18 +47,33 @@
                     </div>
                     <div class="panel-body">
                         <div class="row">
-                            <div class="col-md-3">
+                            <div class="col-md-2">
                                 <p5>Reviews:</p5>
                             </div>
-                            <div class="col-md-9">
+                            <div class="col-md-6">
                                 <ul>
                                     <li th:each="review:${reviews}" th:text="${review.getMessage()}">
                                         review
                                     </li>
                                 </ul>
                             </div>
+                            <div class="col-md-4">
+                                <ul>
+                                    <li th:each="review:${reviews}" th:text="${review.getRating().getDescription()}">
+                                        rating
+                                    </li>
+                                </ul>
+                            </div>
+<!--                            <div class="col-md-2">-->
+<!--                                <ul>-->
+<!--                                    <li th:each="review:${reviews}">-->
+<!--                                        <a th:href="@{'/reviews/delete/' + ${review.id}}">Delete</a>-->
+<!--                                    </li>-->
+<!--                                </ul>-->
+<!--                            </div>-->
                         </div>
                     </div>
+                    <a th:href="@{'/reviews/form/'+${movie.id}}">Add review</a>
                 </div>
 
             </div>
