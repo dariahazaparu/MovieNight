@@ -35,7 +35,7 @@ public class CascadeTypesTest {
 
         Country country = new Country();
         country.setName("America");
-        country.setActors(Arrays.asList(actor));
+        //country.setActors(Arrays.asList(actor));
 
         actor.setCountry(country);
 

@@ -14,6 +14,4 @@ public class Country {
     private int Id;
     private String Name;
 
-    @OneToMany(mappedBy = "country", cascade = CascadeType.ALL)
-    private List<Actor> actors;
 }

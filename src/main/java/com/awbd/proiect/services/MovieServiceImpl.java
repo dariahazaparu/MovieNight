@@ -2,6 +2,7 @@ package com.awbd.proiect.services;
 
 import com.awbd.proiect.domain.Genre;
 import com.awbd.proiect.domain.Movie;
+import com.awbd.proiect.exceptions.ResourceNotFoundException;
 import com.awbd.proiect.repositories.MovieRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
@@ -32,7 +33,7 @@ public class MovieServiceImpl implements MovieService {
     public Movie findById(long id) {
         Optional<Movie> movieOptional = movieRepository.findById(id);
         if (!movieOptional.isPresent()) {
-            throw new RuntimeException("Movie not found!");
+            throw new ResourceNotFoundException("Movie not found!");
         }
         return movieOptional.get();
     }

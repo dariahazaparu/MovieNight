@@ -2,10 +2,12 @@ package com.awbd.proiect.controllers;
 
 import com.awbd.proiect.domain.Actor;
 import com.awbd.proiect.domain.Country;
+import com.awbd.proiect.exceptions.ResourceNotFoundException;
 import com.awbd.proiect.services.ActorService;
 import com.awbd.proiect.services.CountryService;
 import com.awbd.proiect.services.MovieService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -72,5 +74,15 @@ public class ActorController {
     public String deleteById (@PathVariable String id) {
         actorService.deleteById(Long.parseLong(id));
         return "redirect:/actors";
+    }
+
+
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    @ExceptionHandler(ResourceNotFoundException.class)
+    public ModelAndView handlerNotFoundException(Exception exception){
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.getModel().put("exception",exception);
+        modelAndView.setViewName("notFoundException");
+        return modelAndView;
     }
 }
