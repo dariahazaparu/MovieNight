@@ -28,8 +28,8 @@ public class ActorServiceImpl implements ActorService{
     }
 
     @Override
-    public Award getAwardById(long id) {
-        return actorRepository.findById(id).get().getAward();
+    public Award getAwardById(Actor actor) {
+        return actor.getAward();
     }
 
     @Override

@@ -74,6 +74,8 @@ public class ActorController {
         model.addAttribute("actor", actorService.findById(Long.parseLong(id)));
         List<Country> countriesAll = countryService.findAll();
         model.addAttribute("countriesAll", countriesAll);
+        List<Award> awardsAvailable = awardService.findAll();
+        model.addAttribute("awardsAvailable", awardsAvailable);
         return "actorForm";
     }
 

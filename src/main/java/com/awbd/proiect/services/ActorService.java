@@ -10,5 +10,5 @@ public interface ActorService {
     Actor findById(long id);
     Actor save(Actor actor);
     void deleteById(long id);
-    Award getAwardById(long id);
+    Award getAwardById(Actor actor);
 }

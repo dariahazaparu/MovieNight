@@ -6,6 +6,7 @@ import com.awbd.proiect.repositories.AwardRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -23,18 +24,27 @@ public class AwardServiceImpl implements AwardService {
 
     @Override
     public List<Award> findAll() {
-        List<Award> awards = new LinkedList<>();
+        List<Award> awards = new ArrayList<>();
         awards = awardRepository.findAll();
-//        List<Actor> actors = actorService.findAll();
-//        if (!awards.isEmpty())
-//            for (Award a:awards) {
+        List<Award> finalAwards = awards;
+
+        List<Actor> actors = actorService.findAll();
+        if (!awards.isEmpty()) {
+            actors.forEach((ac) -> {
+                Award a = actorService.getAwardById(ac);
+                if (finalAwards.contains(a)){
+                    finalAwards.remove(a);
+                }
+
+            });
+        }
 //                for (Actor ac: actors) {
-//                    Award award = ac.getAwardById(ac);
-//                    if (award != null && a == award && awards.contains(award)) {
-//                        awards.remove(a);
+//                    long x = 5L;
+//                    Award award = actorService.getAwardById(ac);
+//                    if (award != null && awards.contains(award)) {
+//                        awards.remove(award);
 //                    }
 //                }
-//            }
-        return awards;
+        return finalAwards;
     }
 }
