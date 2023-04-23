@@ -3,6 +3,7 @@ package com.awbd.proiect.controllers;
 import com.awbd.proiect.domain.Genre;
 import com.awbd.proiect.domain.Movie;
 import com.awbd.proiect.services.MovieService;
+import lombok.extern.slf4j.Slf4j;
 import org.junit.Before;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
@@ -22,6 +23,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @SpringBootTest
 @AutoConfigureMockMvc
+@Slf4j
 public class MovieControllerIntegrationTest {
 
     @Autowired
@@ -52,9 +54,9 @@ public class MovieControllerIntegrationTest {
         Genre genre = new Genre();
         genre.setId(1);
         genre.setName("genre");
-
         productTest.setGenre(genre);
 
+        log.info("add movie...");
         when(movieService.findById(id)).thenReturn(productTest);
 
         mockMvc.perform(get("/movies/{id}", "1"))
